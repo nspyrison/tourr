@@ -5,7 +5,7 @@
 \title{Calculate information required to interpolate along a geodesic path between
 two frames.}
 \usage{
-geodesic_info(Fa, Fz, epsilon = 1e-06)
+geodesic_info(Fa, Fz, epsilon = 0.000001)
 }
 \arguments{
 \item{Fa}{starting frame, will be orthonormalised if necessary}

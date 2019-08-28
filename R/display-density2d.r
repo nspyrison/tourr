@@ -9,9 +9,9 @@
 #' @param half_range half range to use when calculating limits of projected.
 #'   If not set, defaults to maximum distance from origin to each row of data.
 #' @param edges A two column integer matrix giving indices of ends of lines.
-#' @param col color to be plotted.  Defaults to "black". Each unique color is 
+#' @param col color to be plotted.  Defaults to "black". Each unique color is
 #'   given a new group of contours.
-#' @param pch size of the point to be plotted.  Defaults to 20.
+#' @param pch shape of the point to be plotted.  Defaults to 20.
 #' @param contour_quantile vector of quantiles to plot the contours at.
 #'   Defaults to c(.68, .95).
 #' @param ...  other arguments passed on to \code{\link{animate}} and
@@ -37,15 +37,16 @@
 #' require(colorspace)
 #' pal <- rainbow_hcl(length(levels(flea$species)))
 #' col <- pal[as.numeric(flea$species)]
-#' animate_density2d(flea[,-7], col=col)
+#' pch <- as.numeric(flea$species)+14
+#' animate_density2d(flea[,-7], col=col, pch = pch)
 #'
 #' # You can also draw lines
 #' edges <- matrix(c(1:5, 2:6), ncol = 2)
 #' animate(flea[, 1:6], grand_tour(),
 #'   display_density2d(axes = "bottomleft", edges = edges))
-#' 
+#'
 #' # or change the contour quantiles
-#' animate_density2d(f, col = col, pch = pch, contour_quantile = c(.25, .5, .75))
+#' animate_density2d(flea[, 1:6], col = col, pch = pch, contour_quantile = c(.25, .5, .75))
 display_density2d <- function(center = TRUE, axes = "center", half_range = NULL,
                        col = "black", pch  = 20, contour_quantile = c(.6827, .9545),
                        edges = NULL, ...) {

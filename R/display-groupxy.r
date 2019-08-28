@@ -12,8 +12,8 @@
 #' @param half_range half range to use when calculating limits of projected.
 #'   If not set, defaults to maximum distance from origin to each row of data.
 #' @param edges A two column integer matrix giving indices of ends of lines.
-#' @param col color to be plotted.  Defaults to "black"
-#' @param pch size of the point to be plotted.  Defaults to 20.
+#' @param col color to be plotted.  Defaults to "black".
+#' @param pch shape of the point to be plotted.  Defaults to 20.
 #' @param group_by variable to group by. Must have less than 25 unique values.
 #' @param plot_gps vector of unique levels of the group_by variable to plot.
 #' @param plot_xgp if TRUE, plots points from other groups in light grey.
@@ -48,9 +48,9 @@
 #'
 #' # Point characters, plotting other groups, and plotting legends
 #' pch <- as.numeric(flea$species)+14
-#' animate_groupxy(f, col = col, pch = pch, group_by = gp)
-#' animate_groupxy(f, col = col, pch = pch, group_by = gp, plot_xgp = FALSE)
-#' animate_groupxy(f, col = col, pch = pch, group_by = gp, gp_legend = FALSE)
+#' animate_groupxy(flea[, 1:6], col = col, pch = pch, group_by = gp)
+#' animate_groupxy(flea[, 1:6], col = col, pch = pch, group_by = gp, plot_xgp = FALSE)
+#' animate_groupxy(flea[, 1:6], col = col, pch = pch, group_by = gp, gp_legend = FALSE)
 display_groupxy <- function(center = TRUE, axes = "center", half_range = NULL,
                             col = "black", pch  = 20, edges = NULL,
                             group_by = NULL, plot_gps = "all", plot_xgp = TRUE,
@@ -82,12 +82,13 @@ labels <- NULL
 
     if (plot_gps == "all") {
       gps <- unique(group_by[!is.na(group_by)])
+      ngps <- length(gps)
     } else {
       gps <- unique(group_by[which(group_by %in% plot_gps)])
+      ngps <- length(gps)
     }
-    ngps <- length(gps)
+    if (ngps>24) {stop("Choose a group_by variable with 24 or fewer levels.")}
 
-    if (ngps>24) {stop("Choose a group_by variable with 24 or less levels.")}
     grid <- ceiling(sqrt(ngps+1))
     par(mfrow=c(grid, grid))
 

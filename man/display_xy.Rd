@@ -6,7 +6,7 @@
 \title{Display tour path with a scatterplot}
 \usage{
 display_xy(center = TRUE, axes = "center", half_range = NULL,
-  col = "black", pch = 20, edges = NULL, ...)
+  col = "black", pch = 20, edges = NULL, origin_line = NULL, ...)
 
 animate_xy(data, tour_path = grand_tour(), ...)
 }
@@ -25,6 +25,9 @@ If not set, defaults to maximum distance from origin to each row of data.}
 \item{pch}{size of the point to be plotted.  Defaults to 20.}
 
 \item{edges}{A two column integer matrix giving indices of ends of lines.}
+
+\item{origin_line}{row number(s) of data points to draw to the origin. Adopts
+the color of the point. If used \code{axes = "bottomleft"} is suggested.}
 
 \item{...}{other arguments passed on to \code{\link{animate}} and
 \code{\link{display_xy}}}
@@ -61,4 +64,8 @@ animate_xy(flea[,-7], col=col)
 edges <- matrix(c(1:5, 2:6), ncol = 2)
 animate(flea[, 1:6], grand_tour(),
   display_xy(axes = "bottomleft", edges = edges))
+
+# Adding lines to the origin
+animate_xy(flea[,-7], col=col, axes = "bottomleft",
+  origin_line = c(5, 30, 60))
 }
