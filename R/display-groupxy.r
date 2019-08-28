@@ -22,7 +22,7 @@
 #'   \code{\link{display_groupxy}}
 #' @export
 #' @examples
-#' #' animate_groupxy(flea[, 1:6])
+#' animate_groupxy(flea[, 1:6])
 #' animate(flea[, 1:6], tour_path=grand_tour(), display=display_groupxy())
 #' animate(flea[, 1:6], tour_path=grand_tour(),
 #'   display=display_groupxy(half_range = 0.5))
